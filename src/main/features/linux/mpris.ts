@@ -3,7 +3,7 @@ import Player from 'mpris-service';
 
 import { getMainWindow, showMainWindow } from '/@/main/index';
 import log from '/@/main/logger';
-import { QueueSong } from '/@/shared/types/domain-types';
+import { FullLyricsMetadata, QueueSong } from '/@/shared/types/domain-types';
 import { PlayerRepeat, PlayerStatus } from '/@/shared/types/types';
 
 const mprisPlayer = Player({
@@ -145,6 +145,10 @@ ipcMain.on('update-repeat', (_event, arg: PlayerRepeat) => {
 
 ipcMain.on('update-shuffle', (_event, shuffle: boolean) => {
     mprisPlayer.shuffle = shuffle;
+});
+
+ipcMain.on('update-lyrics', (_event, lyrics: FullLyricsMetadata) => {
+    mprisPlayer.metadata['xesam:asText'] = lyrics.lyrics;
 });
 
 ipcMain.on(
