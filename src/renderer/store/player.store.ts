@@ -1844,6 +1844,7 @@ export type AddToQueueByUniqueId = {
 
 export type AddToQueueOptions = {
     filter?: (song: Song) => boolean;
+    skipConfirmation?: boolean;
 };
 
 export type AddToQueueType = AddToQueueByPlayType | AddToQueueByUniqueId;
